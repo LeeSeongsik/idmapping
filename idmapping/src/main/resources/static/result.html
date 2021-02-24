@@ -1,0 +1,11 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>파일 업로드</title>
+</head>
+<body>
+	<li th:each="file : ${files}">
+		<a th:href="${file}" th:text="${file}" />
+	</li>
+</body>
+</html>

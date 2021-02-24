@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>파일 등록</title>
+		<script type="text/javascript">
+		//첨부파일 추가
+	    var rowIndex = 1;
+	               
+	    function addFile(form){
+	        if(rowIndex > 4) return false;
+		        rowIndex++;
+	    	    var getTable = document.getElementById("insertTable");
+				var oCurrentRow = getTable.insertRow(getTable.rows.length);
+	        	var oCurrentCell = oCurrentRow.insertCell(0);
+	        	oCurrentCell.innerHTML = "<tr><td colspan=2><input name='filename' type='file'></td></tr>";
+	        }
+		//첨부파일 삭제
+	    function deleteFile(form){
+	        if(rowIndex < 2){
+	            return false;
+	        }else{
+	        	rowIndex--;
+				var getTable = document.getElementById("insertTable");
+				getTable.deleteRow(rowIndex);
+	       	}
+	    }
+	</script>
+</head>
+<body>
+ 	<form action="/uid_mapping" id="form" name="form" enctype="multipart/form-data" method="post">
+ 	    <table id="insertTable" border=0 cellpadding=0 cellspacing=0>
+        <tr>
+        	<td valign=bottom>
+        		<input name="filename" type="file" maxLength="200" size="25"/>
+        	</td>
+        	<td width=200>        		
+        		<input type="button" value="삭제" onClick="deleteFile(this.form)" border=0 style='cursor:hand'/>
+        	</td>
+        </tr>
+        </table>
+    	   	<input type="hidden" name="rowCount" value="1"/>
+    		<input type="button" value="추가" onClick="addFile(this.form)" border=0 style='cursor:hand'/>
+    		<input type="submit" value="업로드"/>
+</body>
+</html>
